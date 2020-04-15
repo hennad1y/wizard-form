@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {useSelector} from "react-redux";
+import {IUserState} from "./store/user/types";
+import {IRootState} from "./store";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => {
+    const {step, loading, error} = useSelector(({user}: IRootState): Pick<IUserState, "step" | "loading" | "error"> => (user));
+
+
+
+    if(loading) return <div>Loading...</div>;
+
+    return <div>App</div>
+};
 
 export default App;
