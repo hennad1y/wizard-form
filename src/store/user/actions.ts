@@ -13,7 +13,11 @@ const requestUserData = () => action(UserConstants.REQUEST_USER_DATA);
 
 const requestUserError = (error: string) => action(UserConstants.REQUEST_USER_ERROR, error);
 
-const requestUserSuccess = (data: IUserState) => action(UserConstants.REQUEST_USER_SUCCESS, data);
+const requestUserSuccess = (data: Omit<IUserState, "step" | "loading" | "error">) => action(UserConstants.REQUEST_USER_SUCCESS, data);
+
+const setStep = (step: number) => action(UserConstants.SET_STEP, step);
+
+const clearUser = () => action(UserConstants.CLEAR_USER);
 
 export {
     addUserContactData,
@@ -21,5 +25,7 @@ export {
     addUserCategoriesData,
     requestUserData,
     requestUserError,
-    requestUserSuccess
+    requestUserSuccess,
+    setStep,
+    clearUser
 }

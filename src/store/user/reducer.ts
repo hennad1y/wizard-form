@@ -1,7 +1,7 @@
 import {IUserState, UserActions} from './types';
 import {UserConstants} from './constants';
 
-const init: IUserState = {
+export const init: IUserState = {
     userContactData: {
         email: '',
         password: '',
@@ -57,6 +57,31 @@ export const UserReducer = (state: IUserState = init, action: UserActions): IUse
             return {
                 ...state,
                 userCategoriesData: action.payload
+            };
+        case UserConstants.SET_STEP:
+            return {
+                ...state,
+                step: action.payload
+            };
+        case UserConstants.CLEAR_USER:
+            return {
+                ...state,
+                userContactData: {
+                    email: '',
+                    password: '',
+                    phone: ''
+                },
+                userInformationData: {
+                    address: '',
+                    city: '',
+                    country: ''
+                },
+                userCategoriesData: {
+                    categoryOne: '',
+                    categoryTwo: [],
+                    categoryThree: ''
+                },
+                step: 1
             };
         default:
             return state;
